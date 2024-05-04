@@ -1,0 +1,39 @@
+﻿
+@model ResultGetBlogById
+
+<div class="col-md-8 ftco-animate">
+    <h2 class="mb-3">
+        @Model.Title
+    </h2>
+    <p>
+        @Model.Description
+    </p>
+    <p>
+        <img src="@Model.CoverImageUrl" alt="" class="img-fluid">
+    </p>
+
+    @* Blog cloud tags *@
+    @await Component.InvokeAsync("_BlogDetailCloudTagByBlogComponentPartial", new { id = ViewBag.blogId })
+    @* Blog cloud tags *@
+    
+
+    @* Author About *@
+    @await Component.InvokeAsync("_BlogDetailsAuthorAboutComponentPartial", new { id = ViewBag.blogId })
+    @* Author About *@
+
+    @* //////Comments\\\\\\ *@
+    <div class="pt-5 mt-5">
+        <h3 class="mb-5">6 Comments</h3>
+
+        @* Comment Body *@
+        @await Component.InvokeAsync("_CommentListByBlogComponentPartial")
+        @* Comment Body *@
+
+        <!-- END comment-list -->
+        @* Comment Inputs *@
+        @await Component.InvokeAsync("_AddCommentComponentPartial")
+        @* Comment Inputs *@
+    </div>
+    @* //////Comments\\\\\\ *@
+
+</div>
